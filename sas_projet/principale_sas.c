@@ -2,14 +2,16 @@
 
 int main()
 {
+
     int choix, sousChoix;
     Client client;
     Produit produits[MAX_PRODUCTS] = {
-        {1, "Ordinateur Portable", "Electronique", 799.0, 5, "PC portable avec Intel i5, 8GB RAM"},
-        {2, "Smartphone", "Electronique", 499.0, 10, "Smartphone avec ecran 6 pouces"},
-        {3, "Casque Audio", "Accessoire", 89.0, 15, "Casque audio filaire avec micro"},
-        {4, "Souris", "Accessoire", 25.0, 20, "Souris optique USB"},
-        {5, "Clavier", "Accessoire", 45.0, 12, "Clavier mecanique USB"}};
+        {1, "Ordinateur Portable", "Electronique", 7999, 5, "PC portable avec Intel i5, 8GB RAM", 0},
+        {2, "Smartphone", "Electronique", 499, 10, "Smartphone avec ecran 6 pouces", 0},
+        {3, "Casque Audio", "Accessoire", 89, 15, "Casque audio filaire avec micro", 0},
+        {4, "Souris", "Accessoire", 25, 20, "Souris optique USB", 0},
+        {5, "Clavier", "Accessoire", 45, 12, "Clavier mecanique USB", 0}};
+    // int quntite_consome=0;
     int nombre_produitProduits = 5;
     char nomRecherche[MAX_NAME];
     char catRecherche[MAX_NAME];
@@ -71,6 +73,7 @@ int main()
             printf("3: Trier par nom\n");
             printf("4: Rechercher par nom\n");
             printf("5: Rechercher par categorie\n");
+            printf("6:aficher detaile");
             printf("Entrer sous-choix: ");
             scanf("%d", &sousChoix);
 
@@ -98,6 +101,23 @@ int main()
                 scanf("%s", catRecherche);
                 rechercherProduitParCategorie(produits, nombre_produitProduits, catRecherche);
             }
+            else if (sousChoix == 6)
+            {
+                printf("Entrer nom a detailee\n: ");
+                scanf("%s", nomRecherche);
+                int trouve = 0;
+                for (int i = 0; i < nombre_produitProduits; i++)
+                {
+
+                    if (strstr(produits[i].nom, nomRecherche) != NULL)
+                    {
+                        afficherProduitDetails(produits[i]);
+                        trouve = 1;
+                    }
+                }
+                if (!trouve)
+                    printf("Produit non trouve\n");
+            }
             else
                 printf("Sous-choix invalide\n");
             break;
@@ -107,7 +127,7 @@ int main()
             break;
 
         case 5:
-            Afficher_s(client);
+            Afficher_s(client, produits, nombre_produitProduits);
             break;
 
         case 0:

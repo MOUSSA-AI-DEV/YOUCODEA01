@@ -5,7 +5,7 @@
 #include <string.h>
 
 #define MAX_NAME 50
-#define MAX_EMAIL 100
+#define MAX_EMAIL 200
 #define MAX_DESCRIPTION 100
 #define MAX_PRODUCTS 100
 
@@ -43,6 +43,6 @@ void rechercherProduitParCategorie(Produit produits[], int nombre_produit, char 
 
 Client Effectuer_Achat(Client c, Produit produits[], int nombre_produit);
 
-void Afficher_s(Client c);
+void Afficher_s(Client c,Produit produits[],int nombre_produit);
 
 #endif
